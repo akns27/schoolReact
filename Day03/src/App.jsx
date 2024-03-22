@@ -1,11 +1,11 @@
-import MessageList from "./MessageList";
+import MsgList from "./MsgList";
+
 function App() {
-  
   return (
     <>
-      <MessageList />
+      <MsgList />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
