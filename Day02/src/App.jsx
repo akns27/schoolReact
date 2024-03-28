@@ -1,10 +1,12 @@
-import React from 'react';
-import Counter from './Counter';
+import React from "react";
+import Header from "./Header";
+import CommentList from "./CommentList";
 
 function App() {
   return (
-    <div>
-      <Counter />
+    <div className="App">
+      <Header />
+      <CommentList /> 
     </div>
   );
 }
