@@ -36,7 +36,7 @@ function CommentList() {
   return (
     <div className="comment-list">
       {commentsData.map((comment) => (
-        <Comment key={comment.author} comment={comment.content} likes={comment.likes} dislikes={comment.dislikes} />
+        <Comment author={comment.author} comment={comment.content} likes={comment.likes} dislikes={comment.dislikes} />
       ))}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
 
-function Comment({ name, comment, likes, dislikes }) {
+function Comment({ author, comment, likes, dislikes }) {
   const [likeCount, setLikeCount] = useState(likes);
   const [dislikeCount, setDislikeCount] = useState(dislikes);
 
@@ -23,7 +23,7 @@ function Comment({ name, comment, likes, dislikes }) {
         <span
           className="nameText"
           style={{ color: "skyblue", fontWeight: "bold" }}
-        > {name}</span>
+        > {author}</span>
         <span>  
           <div className="reaction">
             <button onClick={handleLikeClick}>👍{likeCount}</button>
