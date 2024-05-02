@@ -1,9 +1,10 @@
-import UseEffect1 from './UseEffect1';
+import UserModify2 from './UserModify2';
 import './App.css'
+
 
 function App() {
   return (
-    <UseEffect1/>
+    <UserModify2/>
   );
 }
 
