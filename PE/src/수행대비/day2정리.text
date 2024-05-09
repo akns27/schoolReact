@@ -1,0 +1,91 @@
+// InputOutput.jsx
+//입력 값을 전달하여 출력하는 컴포넌트
+import { useState } from "react";
+import "./App.css";
+
+function InputOutput() {
+  const [inputValue, setInputValue] = useState("");
+
+  return (
+    <div>
+      <h1>InputOutput</h1>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Type something..."
+      />
+      <p>Output: {inputValue}</p>
+    </div>
+  );
+}
+
+export default InputOutput;
+
+///////////
+
+//버튼 클릭 시 알림창을 띄우는 컴포넌트 (AlertButton.jsx)
+// AlertButton.jsx
+import "./App.css";
+
+function AlertButton() {
+  const showAlert = () => {
+    alert("이벤트 예제입니다.");
+  };
+
+  return (
+    <div>
+      <h1>AlertButton</h1>
+      <button onClick={showAlert}>Click me</button>
+    </div>
+  );
+}
+
+export default AlertButton;
+
+//////////////
+
+//증가, 감소, 초기화가 되는 컴포넌트를 useState를 이용하여 구현하기
+
+<!-- <Counter.jsx>를 제출하시오. -->
+	import "./App.css";
+import { useState } from "react";
+// Counter 컴포넌트 생성
+function Counter() {
+const [count, setCount] = useState(0);
+return ( 
+  <div>
+    <h1>Counter</h1>
+    <h2>{count}번 클릭했음</h2>
+    <button onClick={() => setCount(count + 1)}>+</button>
+    <button onClick={() => setCount(count - 1)}>-</button><br />
+    <button onClick={() => setCount(0)}>초기화</button>
+  </div>
+  );
+}
+  export default Counter;
+	
+	
+
+	
+	
+<!-- <App.jsx>를 제출하시오. -->
+
+import React from 'react';
+import Counter from './Counter';
+
+function App() {
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+

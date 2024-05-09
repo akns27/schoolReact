@@ -1,0 +1,226 @@
+5. 조건부 렌더링을 사용하여 컴포넌트 요소를 출력/ 미출력을 구현하기
+
+
+import {useState} from "react";
+
+
+function GoalAnd(props) {
+  const {isGoal, msg} = props; //props는 객체
+  if(isGoal) {
+    return(
+      <h3>Goal!<br/>{msg}</h3>
+      
+    );
+  } 
+  else{
+    return(<h3>Missed!<br/>{msg}</h3>);
+
+  }
+
+
+}
+//   Ternary Operator(삼항 연산자)
+//   조건 ? 참일때 실행할 요소 : 거짓일때 실행할 요소
+  function GoalTernary(props) {
+    const {isGoal, msg} = props;
+return (
+    <div>
+      {isGoal ?  <h3>Goal!<br/>{msg}</h3> : <h3>Missed!<br/>{msg}</h3>}
+    </div>
+    );
+
+
+
+}
+//   Logical && Operator
+//   조건이 참(truecy) 이면 && 왼쪽 요소를 실행함.
+  function Garage(props) {
+    const {cars} = props;
+    return (
+      <div>
+      <h2>차고 상황</h2>
+      <h3>차고에{cars.length}대의 차가 있습니다.</h3>
+    </div>
+    );
+}
+
+export default function ConditionTest(){
+    const [goal,setGoal] = useState(false);
+    const cars = ['Ford', 'BMW', 'Audi', 'Tesla'];
+
+    return (
+      <div style={{ margin: '20px' }}>
+      {goal ?
+        <button onClick={() => setGoal(false)}>골 실패</button> :
+        <button onClick={() => setGoal(true)}>골 성공</button>
+      }
+      <GoalAnd isGoal={goal} msg={"if문 사용"}/>
+      <GoalTernary isGoal={goal} msg={"삼항 연산자 사용"}/>
+      <Garage cars={cars}/>
+    </div>
+  );
+}
+
+    
+///////////////////////
+
+ import {useState} from "react";
+import "./style.css";
+export default function ConditionR(){
+  const[login, setLogin] = useState(false);//암기
+  return(
+  
+  <div>
+    
+      <div className="wrapp">
+        {login && <span className="greeting">환영합니다~</span>}
+        {login ?  
+        <button className="btn" onClick={()=>setLogin(false)}>로그아웃</button> :
+        <button className="btn" onClick={()=>setLogin(true)}>로그인</button>
+        }
+
+      </div>
+
+    <hr/>
+    <div style={{paddingTop : "8px"}}>모두 함께 리액트 공부</div>
+
+  </div>
+  );//요소를 리턴
+
+}
+ 
+//////////////
+
+
+6. input에 입력한 값을 useState를 사용하여 <div>에 출력하는 컴포넌트 구현
+import { useState } from "react";
+
+const Modal = (props) =>{
+  const {text}=props;
+  return(
+    <div id="modal">
+      입력한 값은 <span style={{color:"skyblue"}}>{text}</span>입니다.
+    </div>
+  );
+}
+
+export default function InputTest() {
+  const [text, setText] = useState("");
+  return (
+    <div>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+      />
+      <button className="btn" onClick={()=>setText("")}>초기화</button>
+      <hr />
+      {/* {text && <modal text = {modal/>} */}
+      {text && <Modal text={text} />}
+
+
+    </div>
+  );
+}
+
+/////////////
+
+
+7. 객체 배열 요소를 리스트로 구현하는 컴포넌트 구현
+
+/*UserAdd.jsx를 복사하여 사용하시오.*/
+/*UserDelete.jsx를 제출하시오. */
+
+import { useRef, useState } from "react";
+import "./style.css";
+
+const User = ({ user, onRemove }) => {
+  //3번
+  const { id, name, email } = user;
+  console.log(name, email);
+  return (
+    <div>
+      <b>{name}</b>
+      <span>{email}</span>
+      <button onClick={() => onRemove(id)}>삭제</button>
+    </div>
+  );
+};
+
+export default function UseRefAdd() {
+  const [inputs, setInputs] = useState({
+    name: "",
+    email: "",
+  });
+
+  const { name, email } = inputs;
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      name: "강민지",
+      email: "strongminji@gmail.com",
+    },
+    {
+      id: 2,
+      name: "정소울",
+      email: "soulright@bssm.hs.kr",
+    },
+    {
+      id: 3,
+      name: "이승현",
+      email: "victorynow@example.com",
+    },
+  ]);
+  const nextId = useRef(4); //useRef로 4 설정
+  const inputRef = useRef(); //useRef로 설정
+
+  const onChange = (e) => {
+    //input에 반영될 내용 수정
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+  const onCreate = () => {
+    //배열 복사하고 요소 추가
+    const user1 = {
+      id: nextId.current,
+      name, //input의 값
+      email, //input의 값
+    };
+    setUsers([...users, user1]);
+    // nextId값 1 증가
+    nextId.current += 1;
+  };
+
+  const onRemove = (id) => {
+    //1번. 삭제함수 filter사용
+    const rmUser = users.filter((user) => user.id !== id);
+    setUsers(rmUser);
+  };
+
+return (
+  <div>
+    <input
+      name="name"
+      onChange={onChange}
+      value={name}
+      placeholder="이름을 입력"
+    />
+    <input
+      name="email"
+      onChange={onChange}
+      value={email}
+      placeholder="이메일을 입력"
+    />
+    <button onClick={onCreate}>등록</button>
+    {users.map((user) => {
+      return <User user={user} key={user.id} onRemove={onRemove} />;
+    })}
+  </div>
+);
+
+}

@@ -1,0 +1,31 @@
+//배열 데이터를 map(), filter() 를 사용하여 구현하기 
+
+//원래 문제 : 아래결과와 같이 출력되도록 MapTest3 컴포넌트를 작성하여 아래와 같이 배열에 있는 데이터를 컴포넌트의 <i>요소로 출력하는 MapTest3 컴포넌트를 src 폴더에 작성하시오
+
+// MapTest3.jsx
+import React from "react";
+
+function MapTest3() {
+  const ages = [132, 33, 16, 40];
+  const result = ages.filter((item) => item > 18);
+  const result2 = ages.filter((item) => item !== 32);
+
+  return (
+    <>
+      <h2>filter 결과 (18보다 큰 아이템)</h2>
+      <ul>
+        {result.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+      <h2>filter 결과 (32와 같지 않은 아이템)</h2>
+      <ul>
+        {result2.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+export default MapTest3;
