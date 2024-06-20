@@ -2,6 +2,7 @@ import Rooms from "./Rooms.jsx";
 import Header from "./components/Header.jsx";
 import Card from "./components/Card.jsx";
 import Router from "./Router.jsx";
+import React from "react";
 import "../styles.css";
 import { useNavigate } from "react-router-dom";
 

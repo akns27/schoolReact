@@ -1,4 +1,5 @@
 import "./styles.css";
+import React from "react";
 import roomDetails from "./Rooms";
 import Card from "./components/Card";
 const CardList = () => {

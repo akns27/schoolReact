@@ -1,4 +1,5 @@
 import axios from "axios";
+import React from "react";
 import Rooms from "./Rooms.jsx";
 import Card from "./components/Card.jsx";
 import Router from "./Router.jsx";
@@ -26,7 +27,7 @@ export default function HomeAxios() {
     <>
       <Router />
       <div id="wrapper">
-        {Rooms.map((room) => (
+        {rooms.map((room) => (
           <div className="box" key={room.key}>
             {/* detail/+room.key */}
             <img
@@ -42,4 +43,4 @@ export default function HomeAxios() {
       <button style={{padding:"20px"}} onClick={handleLeadMore}>더보기</button>
     </>
   );
-};, 
+};
